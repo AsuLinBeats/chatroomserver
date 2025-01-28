@@ -8,7 +8,6 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-
 #define DEFAULT_BUFFER_SIZE 1024
 
 std::atomic<bool> close = false;

@@ -1,15 +1,65 @@
+/////////////////////////////////////////////////////////////////
+//! This is a independent testing environment of chatroom server.
+/////////////////////////////////////////////////////////////////
+//#include"Source.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <iostream>
 #include <string>
 #include <thread>
 #include <conio.h>
+#include<vector>
+#include<mutex>
 
 #pragma comment(lib, "Ws2_32.lib")
 
 #define DEFAULT_BUFFER_SIZE 1024
+struct message {
+    std::string content;
+    std::string client_id;
+};
 
 std::atomic<bool> close = false;
+std::vector<message> chatHistory; // saves message
+std::mutex client_lock;
+
+void Controlclients(SOCKET  client_socket, const char* client_ip) {
+    // multithread version of receive
+    int connection = 0; // number of connected devices
+    char buffer[DEFAULT_BUFFER_SIZE];
+    while (true) {
+    int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
+    if (bytes_received > 0) {
+        buffer[bytes_received] = '\0'; // Null-terminate the received data
+        // identify sender
+        std::cout << "Received from client" << buffer << std::endl; // display texture
+        message mess;
+        mess.client_id = client_ip;
+        mess.content = buffer;
+        {
+            std::lock_guard<std::mutex> lock(client_lock);
+            chatHistory.push_back(mess);
+        }
+        
+        // ! reply client for testing!
+        std::string response = "Server received: " + std::string(buffer);
+        send(client_socket, response.c_str(), response.size(), 0);
+    }
+    else if (bytes_received == 0) {
+        std::cout << "Connection closed by server." << std::endl;
+    }
+    else if (close) {
+        std::cout << "Terminating connection\n";
+    }
+
+    else {
+        std::cerr << "Receive failed with error: " << WSAGetLastError() << std::endl;
+    }
+    if (strcmp(buffer, "!bye") == 0) {
+        close = true;
+    }
+    }
+}
 
 void Send(SOCKET  client_socket) {
     int count = 0;
@@ -36,33 +86,11 @@ void Send(SOCKET  client_socket) {
     closesocket(client_socket); // send does closing
 }
 
+void Display() {
+    // save and display every message in IMGUI
 
-
-void Receive(SOCKET client_socket) {
-    int count = 0;
-    while (!close) {
-        // Receive the reversed sentence from the server
-        char buffer[DEFAULT_BUFFER_SIZE] = { 0 };
-        int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
-        if (bytes_received > 0) {
-            buffer[bytes_received] = '\0'; // Null-terminate the received data
-            std::cout << "Received(" << count++ << "): " << buffer << std::endl;
-        }
-        else if (bytes_received == 0) {
-            std::cout << "Connection closed by server." << std::endl;
-        }
-        else if (close) {
-            std::cout << "Terminating connection\n";
-        }
-
-        else {
-            std::cerr << "Receive failed with error: " << WSAGetLastError() << std::endl;
-        }
-        if (strcmp(buffer, "!bye") == 0) {
-            close = true;
-        }
-    }
 }
+
 
 
 int server() {
@@ -103,30 +131,22 @@ int server() {
     }
 
     std::cout << "Server is listening on port 65432..." << std::endl;
+    // add while and multithread to enable build more connections.
+    while (true) {
+        sockaddr_in client_address;
+        int client_address_len = sizeof(client_address);
+        SOCKET client_socket = accept(server_socket, (sockaddr*)&client_address, &client_address_len);
+        if (client_socket == INVALID_SOCKET) {
+            std::cerr << "Accept failed with error " << WSAGetLastError() << std::endl;
+            continue;
+        }
+        char client_ip[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &client_address.sin_addr, client_ip, INET_ADDRSTRLEN);
+        std::cout << "New connection from " << client_ip << std::endl;
 
-    // Step 5: Accept a connection
-    sockaddr_in client_address = {};
-    int client_address_len = sizeof(client_address);
-    SOCKET client_socket = accept(server_socket, (sockaddr*)&client_address, &client_address_len);
-    if (client_socket == INVALID_SOCKET) {
-        std::cerr << "Accept failed with error: " << WSAGetLastError() << std::endl;
-        closesocket(server_socket);
-        WSACleanup();
-        return 1;
+        std::thread(Controlclients, client_socket,client_ip).detach();
     }
 
-    char client_ip[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &client_address.sin_addr, client_ip, INET_ADDRSTRLEN);
-    std::cout << "Accepted connection from " << client_ip << ":" << ntohs(client_address.sin_port) << std::endl;
-
-
-    // Receive(client_socket);
-    // Send(client_socket);
-    std::thread t1 = std::thread(Send, client_socket);
-    std::thread t2 = std::thread(Receive, client_socket);
-
-    t1.join();
-    t2.join();
 
     // Step 7: Clean up
   //  closesocket(client_socket);
