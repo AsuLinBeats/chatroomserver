@@ -18,14 +18,43 @@ struct message {
     std::string content;
     std::string client_id;
 };
+struct Client {
+    SOCKET socket;
+    std::string id;
+};
 
+std::vector<Client> currentClients;
 std::atomic<bool> close = false;
 std::vector<message> chatHistory; // saves message
 std::mutex client_lock;
+//
+// public chat server
+void AddClient(SOCKET s, const std::string& id) {
+    std::lock_guard<std::mutex> lock(client_lock);
+    currentClients.push_back({ s, id });
+}
+
+
+void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
+    std::vector<Client> clients_copy;
+    {
+        std::lock_guard<std::mutex> lock(client_lock);
+        clients_copy = currentClients;
+    }
+
+    // send messages to all clients except sender
+    for (const auto& client : clients_copy) {
+        if (client.socket != exclude_socket) {
+            send(client.socket, msg.c_str(), msg.size(), 0);
+        }
+    }
+}
+
 
 void Controlclients(SOCKET  client_socket, const char* client_ip) {
     // multithread version of receive
-    int connection = 0; // number of connected devices
+    AddClient(client_socket, client_ip);
+    // message buffer
     char buffer[DEFAULT_BUFFER_SIZE];
     while (true) {
     int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
@@ -36,55 +65,76 @@ void Controlclients(SOCKET  client_socket, const char* client_ip) {
         message mess;
         mess.client_id = client_ip;
         mess.content = buffer;
-        {
-            std::lock_guard<std::mutex> lock(client_lock);
-            chatHistory.push_back(mess);
-        }
-        
+        //{
+        //    // std::lock_guard<std::mutex> lock(client_lock);
+        //    chatHistory.push_back(mess);
+        //}
+
+        std::string fullMsg = std::string(client_ip) + " : " + buffer + "\n";
+        Broadcast(fullMsg, client_socket); // 广播给其他客户端
         // ! reply client for testing!
         std::string response = "Server received: " + std::string(buffer);
         send(client_socket, response.c_str(), response.size(), 0);
     }
-    else if (bytes_received == 0) {
-        std::cout << "Connection closed by server." << std::endl;
+    else if (bytes_received <= 0) {
+        std::cout << "Client " << client_ip << " disconnected\n";
+        // lock threads and clean it
+        std::lock_guard<std::mutex> lock(client_lock);
+        currentClients.erase(
+            std::remove_if(currentClients.begin(), currentClients.end(),
+                [client_socket](const Client& c) {
+                    return c.socket == client_socket;
+                }),
+            currentClients.end()
+        );
+
+        closesocket(client_socket);
+        break;
+
     }
     else if (close) {
+        //! this close applies for whole server, but actually we only need to close one threads. 
         std::cout << "Terminating connection\n";
     }
 
+    //if (strcmp(buffer, "!bye") == 0) {
+    //    client_close = true; // 只影响当前客户端
+    //    std::cout << "Client " << client_ip << " requested disconnect\n";
+    //}
     else {
         std::cerr << "Receive failed with error: " << WSAGetLastError() << std::endl;
     }
-    if (strcmp(buffer, "!bye") == 0) {
-        close = true;
-    }
+    //if (strcmp(buffer, "!bye") == 0) {
+    //    close = true;
+    //}
     }
 }
 
-void Send(SOCKET  client_socket) {
-    int count = 0;
-    while (!close) {
-        if (_kbhit()) { // non-blocking keyboard input 
-            std::cout << "Send(" << count++ << "): ";
-            std::string sentence;
-
-            std::getline(std::cin, sentence);
-
-            if (sentence == "!bye") {
-                close = true;
-                std::cout << "Exiting\n";
-            }
-
-            // Send the sentence to the server
-            if (send(client_socket, sentence.c_str(), static_cast<int>(sentence.size()), 0) == SOCKET_ERROR) {
-                if (close) std::cout << "Terminating\n";
-                else std::cerr << "Send failed with error: " << WSAGetLastError() << std::endl;
-                break;
-            }
-        }
-    }
-    closesocket(client_socket); // send does closing
-}
+//! generally server not send things
+//void Send(SOCKET  client_socket) {
+//    int count = 0;
+//    while (!close) {
+//        if (_kbhit()) { // non-blocking keyboard input 
+//            std::cout << "Send(" << count++ << "): ";
+//            std::string sentence;
+//
+//            std::getline(std::cin, sentence);
+//
+//            if (sentence == "!bye") {
+//                close = true;
+//                std::cout << "Exiting\n";
+//            }
+//
+//            // Send the sentence to the server
+//            if (send(client_socket, sentence.c_str(), static_cast<int>(sentence.size()), 0) == SOCKET_ERROR) {
+//                if (close) std::cout << "Terminating\n";
+//                else std::cerr << "Send failed with error: " << WSAGetLastError() << std::endl;
+//                break;
+//            }
+//        }
+//    }
+//    closesocket(client_socket); // send does closing
+//}
 
 void Display() {
     // save and display every message in IMGUI
