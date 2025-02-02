@@ -34,6 +34,21 @@ void AddClient(SOCKET s, const std::string& id) {
     currentClients.push_back({ s, id });
 }
 
+//
+//void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
+//    std::vector<Client> clients_copy;
+//    {
+//        std::lock_guard<std::mutex> lock(client_lock);
+//        clients_copy = currentClients;
+//    }
+//
+//    // send messages to all clients except sender
+//    for (const auto& client : clients_copy) {
+//        if (client.socket != exclude_socket) {
+//            send(client.socket, msg.c_str(), msg.size(), 0);
+//        }
+//    }
+//}
 
 void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
     std::vector<Client> clients_copy;
@@ -41,8 +56,6 @@ void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
         std::lock_guard<std::mutex> lock(client_lock);
         clients_copy = currentClients;
     }
-
-    // send messages to all clients except sender
     for (const auto& client : clients_copy) {
         if (client.socket != exclude_socket) {
             send(client.socket, msg.c_str(), msg.size(), 0);
@@ -50,51 +63,49 @@ void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
     }
 }
 
-
 void Controlclients(SOCKET  client_socket, const char* client_ip) {
     // multithread version of receive
     AddClient(client_socket, client_ip);
     //// message buffer
-    //char buffer[DEFAULT_BUFFER_SIZE];
+    char buffer[DEFAULT_BUFFER_SIZE];
 
-    //// Receive the username as the first message
-    //int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
-    //if (bytes_received <= 0) {
-    //    // Handle error or disconnect
-    //    closesocket(client_socket);
-    //    return;
-    //}
-    //buffer[bytes_received] = '\0';
-    //std::string username = buffer;
-    //// Optionally remove newline characters
-    //username.erase(std::remove(username.begin(), username.end(), '\n'), username.end());
+    // Receive the username as the first message
+    int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
+    if (bytes_received <= 0) {
+        // Handle error or disconnect
+        closesocket(client_socket);
+        return;
+    }
+    buffer[bytes_received] = '\0';
+    std::string username = buffer;
+    // Optionally remove newline characters
+    // username.erase(std::remove(username.begin(), username.end(), '\n'), username.end());
 
-    //// Add client with the username, not the IP
-    //{
-    //    std::lock_guard<std::mutex> lock(client_lock);
-    //    currentClients.push_back({ client_socket, username });
-    //}
+    // Add client with the username, not the IP
+    {
+        std::lock_guard<std::mutex> lock(client_lock);
+        currentClients.push_back({ client_socket, username });
+    }
 
-    //std::cout << "Client " << username << " (" << client_ip << ") connected.\n";
+    std::cout << "Client " << username << " (" << client_ip << ") connected.\n";
 
     while (true) {
     bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
     if (bytes_received > 0) {
         buffer[bytes_received] = '\0'; // Null-terminate the received data
         // identify sender
-        std::cout << "Received from client" << buffer << std::endl; // display texture
-        message mess;
-        mess.client_id = client_ip;
-        mess.content = buffer;
-        //{
-        //    // std::lock_guard<std::mutex> lock(client_lock);
-        //    chatHistory.push_back(mess);
-        //}
+        std::string messageContent = buffer;
 
-        std::string fullMsg = std::string(client_ip) + " : " + buffer + "\n";
-        Broadcast(fullMsg, client_socket); 
-        // ! reply client for testing!
-        std::string response = "Server received: " + std::string(buffer);
+        std::cout << "Received from " << username << ": " << messageContent << std::endl;
+
+        // Prepare the full message including the username
+        std::string fullMsg = username + " : " + messageContent + "\n";
+
+        // Broadcast to all other clients
+        Broadcast(fullMsg, client_socket);
+
+        // Optionally, reply to the client for testing
+        std::string response = messageContent;
         send(client_socket, response.c_str(), response.size(), 0);
     }
     else if (bytes_received <= 0) {

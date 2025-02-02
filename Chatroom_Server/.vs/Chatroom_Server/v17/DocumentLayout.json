@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "ServerExample\\Source.h",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.h",
               "RelativeToolTip": "ServerExample\\Source.h",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-02T01:50:55.556Z",
               "EditorCaption": ""
@@ -64,8 +64,7 @@
               "RelativeToolTip": "ServerExample\\PrivateServer.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-02T01:50:54.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-02T01:50:54.551Z"
             },
             {
               "$type": "Document",
@@ -111,7 +110,7 @@
               "RelativeDocumentMoniker": "ServerExample\\Source.cpp",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.cpp",
               "RelativeToolTip": "ServerExample\\Source.cpp",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAAwFAAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwEsAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-27T22:19:48.845Z",
               "EditorCaption": ""
