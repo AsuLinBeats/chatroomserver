@@ -23,11 +23,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
@@ -39,8 +43,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\mutex",
               "ViewState": "AgIAAL8BAAAAAAAAAAAAAMUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-29T19:42:20.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T19:42:20.304Z"
             },
             {
               "$type": "Document",
@@ -52,8 +55,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\crt\\src\\x64\\gshandlereh4.cpp",
               "ViewState": "AgIAAEEAAAAAAAAAAAAlwEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-29T19:42:12.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T19:42:12.462Z"
             },
             {
               "$type": "Document",
@@ -65,8 +67,7 @@
               "RelativeToolTip": "..\\..\\..\\Downloads\\Multi-Person-ChatRoom-master\\src\\Server.cpp",
               "ViewState": "AgIAABQBAAAAAAAAAAAAAAYBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-29T18:38:39.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T18:38:39.671Z"
             },
             {
               "$type": "Document",
@@ -76,7 +77,7 @@
               "RelativeDocumentMoniker": "ServerExample\\Source.cpp",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.cpp*",
               "RelativeToolTip": "ServerExample\\Source.cpp*",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAcwFAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-27T22:19:48.845Z",
               "EditorCaption": ""

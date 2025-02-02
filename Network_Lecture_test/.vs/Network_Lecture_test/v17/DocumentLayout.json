@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\Davi\\source\\chatroomserver\\Network_Lecture_test\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3A47B719-6862-447D-894E-A5679A3FC61A}|Lecture_example\\Lecture_example.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Network_Lecture_test\\Lecture_example\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3A47B719-6862-447D-894E-A5679A3FC61A}|Lecture_example\\Lecture_example.vcxproj|solutionrelative:Lecture_example\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5566D8A4-FB19-47FC-9028-DEC2FDC9FB3D}|Network_Lecture_test\\Network_Lecture_test.vcxproj|C:\\Users\\Davi\\Downloads\\ConcurrentSendRecvClient.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5566D8A4-FB19-47FC-9028-DEC2FDC9FB3D}|Network_Lecture_test\\Network_Lecture_test.vcxproj|C:\\Users\\Davi\\Downloads\\ConcurrentSendRecvClient.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3A47B719-6862-447D-894E-A5679A3FC61A}|Lecture_example\\Lecture_example.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Network_Lecture_test\\Lecture_example\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A47B719-6862-447D-894E-A5679A3FC61A}|Lecture_example\\Lecture_example.vcxproj|solutionrelative:Lecture_example\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +17,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,26 +25,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Davi\\source\\chatroomserver\\Network_Lecture_test\\Lecture_example\\Source.cpp",
               "RelativeDocumentMoniker": "Lecture_example\\Source.cpp",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Network_Lecture_test\\Lecture_example\\Source.cpp",
               "RelativeToolTip": "Lecture_example\\Source.cpp",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-27T22:18:32.276Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ConcurrentSendRecvClient.cpp",
               "DocumentMoniker": "C:\\Users\\Davi\\Downloads\\ConcurrentSendRecvClient.cpp",
               "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\ConcurrentSendRecvClient.cpp",
               "ToolTip": "C:\\Users\\Davi\\Downloads\\ConcurrentSendRecvClient.cpp",
               "RelativeToolTip": "..\\..\\..\\Downloads\\ConcurrentSendRecvClient.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAcwHwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-27T20:36:32.158Z",
               "EditorCaption": ""

@@ -54,10 +54,31 @@ void Broadcast(const std::string& msg, SOCKET exclude_socket = INVALID_SOCKET) {
 void Controlclients(SOCKET  client_socket, const char* client_ip) {
     // multithread version of receive
     AddClient(client_socket, client_ip);
-    // message buffer
-    char buffer[DEFAULT_BUFFER_SIZE];
+    //// message buffer
+    //char buffer[DEFAULT_BUFFER_SIZE];
+
+    //// Receive the username as the first message
+    //int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
+    //if (bytes_received <= 0) {
+    //    // Handle error or disconnect
+    //    closesocket(client_socket);
+    //    return;
+    //}
+    //buffer[bytes_received] = '\0';
+    //std::string username = buffer;
+    //// Optionally remove newline characters
+    //username.erase(std::remove(username.begin(), username.end(), '\n'), username.end());
+
+    //// Add client with the username, not the IP
+    //{
+    //    std::lock_guard<std::mutex> lock(client_lock);
+    //    currentClients.push_back({ client_socket, username });
+    //}
+
+    //std::cout << "Client " << username << " (" << client_ip << ") connected.\n";
+
     while (true) {
-    int bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
+    bytes_received = recv(client_socket, buffer, DEFAULT_BUFFER_SIZE - 1, 0);
     if (bytes_received > 0) {
         buffer[bytes_received] = '\0'; // Null-terminate the received data
         // identify sender
@@ -71,7 +92,7 @@ void Controlclients(SOCKET  client_socket, const char* client_ip) {
         //}
 
         std::string fullMsg = std::string(client_ip) + " : " + buffer + "\n";
-        Broadcast(fullMsg, client_socket); // 广播给其他客户端
+        Broadcast(fullMsg, client_socket); 
         // ! reply client for testing!
         std::string response = "Server received: " + std::string(buffer);
         send(client_socket, response.c_str(), response.size(), 0);
@@ -97,48 +118,12 @@ void Controlclients(SOCKET  client_socket, const char* client_ip) {
         std::cout << "Terminating connection\n";
     }
 
-    //if (strcmp(buffer, "!bye") == 0) {
-    //    client_close = true; // 只影响当前客户端
-    //    std::cout << "Client " << client_ip << " requested disconnect\n";
-    //}
+
     else {
         std::cerr << "Receive failed with error: " << WSAGetLastError() << std::endl;
     }
-    //if (strcmp(buffer, "!bye") == 0) {
-    //    close = true;
-    //}
+
     }
-}
-
-//! generally server not send things
-//void Send(SOCKET  client_socket) {
-//    int count = 0;
-//    while (!close) {
-//        if (_kbhit()) { // non-blocking keyboard input 
-//            std::cout << "Send(" << count++ << "): ";
-//            std::string sentence;
-//
-//            std::getline(std::cin, sentence);
-//
-//            if (sentence == "!bye") {
-//                close = true;
-//                std::cout << "Exiting\n";
-//            }
-//
-//            // Send the sentence to the server
-//            if (send(client_socket, sentence.c_str(), static_cast<int>(sentence.size()), 0) == SOCKET_ERROR) {
-//                if (close) std::cout << "Terminating\n";
-//                else std::cerr << "Send failed with error: " << WSAGetLastError() << std::endl;
-//                break;
-//            }
-//        }
-//    }
-//    closesocket(client_socket); // send does closing
-//}
-
-void Display() {
-    // save and display every message in IMGUI
-
 }
 
 
