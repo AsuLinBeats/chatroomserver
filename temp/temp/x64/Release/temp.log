@@ -1,0 +1,11 @@
+﻿  raster.cpp
+C:\Users\Davi\source\chatroomserver\temp\temp\mesh.h(197,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'raster.cpp')
+  
+C:\Users\Davi\source\chatroomserver\temp\temp\mesh.h(202,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'raster.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\concepts(12): warning STL4038: The contents of <concepts> are available only with C++20 or later.
+C:\Users\Davi\source\chatroomserver\temp\temp\zbuffer.h(4,9): error C1083: Cannot open include file: 'floating_point': No such file or directory
+  (compiling source file 'raster.cpp')
+  

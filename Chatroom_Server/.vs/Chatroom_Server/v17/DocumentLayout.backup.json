@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|solutionrelative:ServerExample\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|solutionrelative:ServerExample\\Source.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\PrivateServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|solutionrelative:ServerExample\\PrivateServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Davi\\Downloads\\Multi-Person-ChatRoom-master\\src\\Server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -14,14 +22,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\mutex||{3B902123-F8A7-4915-9F01-361F908088D0}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|solutionrelative:ServerExample\\Source.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\PrivateServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1070D7D7-9954-4098-9EB5-C5913CE46D7D}|ServerExample\\ServerExample.vcxproj|solutionrelative:ServerExample\\PrivateServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,19 +47,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Source.h",
               "DocumentMoniker": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.h",
               "RelativeDocumentMoniker": "ServerExample\\Source.h",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.h",
               "RelativeToolTip": "ServerExample\\Source.h",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-02T01:50:55.556Z"
+              "WhenOpened": "2025-02-02T01:50:55.556Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "PrivateServer.cpp",
               "DocumentMoniker": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\PrivateServer.cpp",
               "RelativeDocumentMoniker": "ServerExample\\PrivateServer.cpp",
@@ -71,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "mutex",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\mutex",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\mutex",
@@ -83,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "gshandlereh4.cpp",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\crt\\src\\x64\\gshandlereh4.cpp",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\crt\\src\\x64\\gshandlereh4.cpp",
@@ -95,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Server.cpp",
               "DocumentMoniker": "C:\\Users\\Davi\\Downloads\\Multi-Person-ChatRoom-master\\src\\Server.cpp",
               "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\Multi-Person-ChatRoom-master\\src\\Server.cpp",
@@ -113,7 +114,7 @@
               "RelativeDocumentMoniker": "ServerExample\\Source.cpp",
               "ToolTip": "C:\\Users\\Davi\\source\\chatroomserver\\Chatroom_Server\\ServerExample\\Source.cpp",
               "RelativeToolTip": "ServerExample\\Source.cpp",
-              "ViewState": "AgIAAFsAAAAAAAAAAADwv2oAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAUwAYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-27T22:19:48.845Z",
               "EditorCaption": ""
