@@ -19,3 +19,27 @@
 - C++14
 - C++多线程
 - Winsock
+
+# English
+# Simple Multithreaded Chatroom (Server Side)
+
+A multithreaded TCP chat server built with C++ and Winsock, designed for learning the basics of network communication, client management, and message exchange.
+
+## Features
+- **Multithreaded Client Handling**: Each client is managed in a separate thread to enable simultaneous communication
+- **Broadcast Messaging**: Supports sending public messages to all connected clients
+- **Notification System**: Clients receive notification sounds when a user joins or leaves
+- **User List Synchronization**: The server continuously tracks and updates the current list of connected users
+
+## Message Protocol
+- `BROADCAST|<message>` — Sends a public message to all users  
+Server sends:
+- `PRIVATE|<fromUser>|<message>`
+- `USERLIST|<user1>,<user2>,...`
+- `USERJOIN|<username>`
+- `USERLEFT|<username>`
+
+## Tech Stack
+- C++14  
+- C++ Multithreading  
+- Winsock
